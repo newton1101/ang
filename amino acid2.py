@@ -1,4 +1,5 @@
-def translate(): 
+
+def translate(rslt): 
     table = { 
         'ATA':'ILEU-', 'ATC':'ILEU-', 'ATT':'ILEU-', 'ATG':'MET-', 
         'ACA':'THR-', 'ACC':'THR-', 'ACG':'THR-', 'ACT':'THR-', 
@@ -20,21 +21,28 @@ def translate():
     } 
     protein ="" 
     sm = False
-    if len(rslt)%3 == 0: 
-        for i in range(0, len(rslt), 3):
 
+    for i in range(0, len(rslt)):
+
+        codon = rslt[i:i + 3]
+
+        if codon == 'ATG':
+            sm = True
+            pos = i
+            break
+    
+    if sm == True :
+        
+        for i in range(pos, len(rslt),3) :
+            
             codon = rslt[i:i + 3]
-
-            if codon == 'ATG':
-                sm = True
-
-            if sm == True:
-                if codon == ('TAA' or 'TAG' or 'TGA'):
-                    return protein
-                else: 
-                    protein+= table[codon] 
+            
+            if codon in ['TAA', 'TAG', 'TGA']:
+                return protein
+            else: 
+                protein += table[codon] 
                  
     return False
              
 
-print(translate())
+print(translate("ATGTCGTAA"))
