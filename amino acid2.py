@@ -35,6 +35,10 @@ def translate():
                     protein+= table[codon] 
                  
     return False
-             
 
+    if protain"" in (친수성아미노산 찾아서 넣기):
+        print('해당 폴리펩타이드가 아미노산 분자 내로 숨겨지는 구조입니다.')
+    if protain"" in (소수성 아미노산 찾아서 넣기):
+        print('해당 폴리펩타이드가 아미노산 분자 표면으로 배치됩니다.)
+              
 print(translate())
