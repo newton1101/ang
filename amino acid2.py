@@ -33,7 +33,8 @@ def translate():
                     return protein
                 else: 
                     protein+= table[codon] 
-                 
+            if codon ==('TTT' or 'TTC'):
+                print('if you have 페닐케톤뇨증, 삼가 고인의 명복을 빔.')
     return False
              
 
