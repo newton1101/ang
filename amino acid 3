@@ -23,7 +23,7 @@ def rev_comp(seq): #상보적 역순 방식 함수
     return (rev(comp(seq)))
  
 
-option = int(input("1(DNA) 2(RNA)"))
+option = int(input("1(DNA) 2(RNA)")) #DNA RNA 선택
 src = input("seq: ")
 cnvt = int(input("1(Comp) 2(Rev) 3(Rev_Comp)"))
 
