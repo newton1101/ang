@@ -1,4 +1,5 @@
-def comp(seq):  #상보적 방식 함수
+def comp(seq):  
+    #상보적 방식 함수
     comp_dict={'A':'T', 'T':'A', 'C':'G', 'G':'C'}
     seq_comp=""
     for char in seq:
