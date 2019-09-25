@@ -26,22 +26,14 @@ def translate(rslt):
 
         codon = rslt[i:i + 3]
 
-        if codon == 'ATG':
-            sm = True
-            pos = i
-            break
-    
-    if sm == True :
-        
-        for i in range(pos, len(rslt),3) :
-            
-            codon = rslt[i:i + 3]
-            
-            if codon in ['TAA', 'TAG', 'TGA']:
-                return protein
-            else: 
-                protein += table[codon] 
-                 
+
+            if sm == True:
+                if codon == ('TAA' or 'TAG' or 'TGA'):
+                    return protein
+                else: 
+                    protein+= table[codon] 
+            if codon ==('TTT' or 'TTC'):
+                print('if you have 페닐케톤뇨증, 삼가 고인의 명복을 빔.')
     return False
              
 
