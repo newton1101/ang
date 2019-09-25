@@ -37,4 +37,12 @@ def translate(rslt):
     return False
              
 
-print(translate("ATGTCGTAA"))
+
+print(translate())
+
+            if protain"" in ('GLY', 'ALA', 'VAL', 'LEU', 'ILE', 'MET', 'PHE', 'TRP', 'PRO'):
+                 print('해당 폴리펩타이드가 아미노산 분자 내로 숨겨지는 구조입니다.')
+            if protain"" in ('SER', 'THR', 'CYS', 'TYR', 'ASN', 'GLN', 'ASP', 'GLU', 'LYS','ARG','HIS'):
+                 print('해당 폴리펩타이드가 아미노산 분자 표면으로 배치됩니다.)
+   # 사슬모양, 고리형, 방향족 등의 특성도 넣기#         
+
