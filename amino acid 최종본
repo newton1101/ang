@@ -1,0 +1,91 @@
+def tsc(seq):  #주형을 전사하는 함수(결과가 주형과 반대 방향)
+    comp_dict={'A':'U', 'T':'A', 'C':'G', 'G':'C'}
+    seq_comp=""
+    for char in seq:
+        if char in comp_dict:
+            seq_comp = seq_comp + comp_dict[char]
+        else:
+            seq_comp = seq_comp + '?'
+    return seq_comp
+
+def rev(seq): #핵산의 방향을 바꾸어주는 함수 
+    comp_dict={'A':'A', 'U':'U', 'C':'C', 'G':'G'}
+    rev_str = "".join(reversed(seq))
+    seq_rev = ""
+    for char in rev_str:
+        if char in comp_dict:
+            seq_rev = seq_rev + comp_dict[char]
+        else:
+            seq_rev = seq_rev + '?'
+    return seq_rev
+
+def rev_tsc(seq): #전사한 결과가 주형가닥 방향과 동일하도록 만들어주는 함수 
+    return rev(tsc(seq))
+
+def ss(seq): #비주형 가닥의 주형가닥 mRNA 
+    comp_dict={'A':'A', 'T':'U', 'C':'C', 'G':'G'}
+    seq_comp=""
+    for char in seq:
+        if char in comp_dict:
+            seq_comp = seq_comp + comp_dict[char]
+        else:
+            seq_comp = seq_comp + '?'
+    return seq_comp
+
+def translate(): 
+    table = { 
+        'AUA':'ILEU-', 'AUC':'ILEU-', 'AUU':'ILEU-', 'AUG':'N-MET-', 
+        'ACA':'THR-', 'ACC':'THR-', 'ACG':'THR-', 'ACU':'THR-', 
+        'AAC':'ASN-', 'AAU':'ASN-', 'AAA':'LYS-', 'AAG':'LYS-', 
+        'AGC':'SER-', 'AGU':'SER-', 'AGA':'ARG-', 'AGG':'ARG-',                  
+        'CUA':'LEU-', 'CUC':'LEU-', 'CUG':'LEU-', 'CUU':'LEU-', 
+        'CCA':'PRO-', 'CCC':'PRO-', 'CCG':'PRO-', 'CCU':'PRO-', 
+        'CAC':'HIS-', 'CAU':'HIS-', 'CAA':'GLN-', 'CAG':'GLN-', 
+        'CGA':'ARG-', 'CGC':'ARG-', 'CGG':'ARG-', 'CGU':'ARG-', 
+        'GUA':'VAL-', 'GUC':'VAL-', 'GUG':'VAL-', 'GUU':'VAL-', 
+        'GCA':'ALA-', 'GCC':'ALA-', 'GCG':'ALA-', 'GCU':'ALA-', 
+        'GAC':'ASP-', 'GAU':'ASP-', 'GAA':'GLU-', 'GAG':'GLU-', 
+        'GGA':'GLY-', 'GGC':'GLY-', 'GGG':'GLY-', 'GGU':'GLY-', 
+        'UCA':'SER-', 'UCC':'SER-', 'UCG':'SER-', 'UCU':'SER-', 
+        'UUC':'PHE-', 'UUU':'PHE-', 'UUA':'LEU-', 'UUG':'LEU-', 
+        'UAC':'TYR-', 'UAU':'TYR-', 'UAA':'_', 'UAG':'_', 
+        'UGC':'CYS-', 'UGU':'CYS-', 'UGA':'_', 'UGG':'TRY-', 
+    } 
+    protein ="" 
+    sm = False
+    if len(m)%3 == 0: 
+        for i in range(0, len(m), 3):
+            codon = m[i:i + 3]
+            if codon == 'AUG':
+                sm = True
+            if sm == True:
+                if codon == ('UAA' or 'UAG' or 'UGA'):
+                    protein += 'C'
+                    return protein 
+                else: 
+                    protein+= table[codon] 
+    else:            
+        return False
+
+n = input("입력할 염기서열의 방향을 입력해주세요 (Ex: 53, 35): ")
+k = input("입력할 핵산의 종류를 입력해주세요 (DNA:1, RNA:2): ")
+src = input("seq: ")
+if k=='1':
+    ss = input("입력하신 가닥이 주형이면 1, 비주형이면 2를 입력하세요: ")
+    if ss == '1':
+        if n == '53' :
+            m = rev_tsc(src)
+        else :
+            m = tsc(src)
+    else :
+        if n == '53' :
+            m = ss(src)
+        else :
+            m = ss(rev(src))
+else :
+    if n == '53' :
+        m = src
+    else :
+        m = rev(src)
+print('5-'+m+'-3')
+print(translate())
